@@ -396,5 +396,261 @@
     "note": "北加州規模最大的暢貨中心，涵蓋數百家國際精品與名牌服飾折扣店。",
     "address": "矽谷 (Silicon Valley)",
     "mapUrl": "https://www.google.com/maps/place/San+Francisco+Premium+Outlets/data=!4m2!3m1!1s0x89e3783bfbe0e0ab:0x4d73361da6a2cdb8"
+  },
+  {
+    "id": "us-027",
+    "name": "芝加哥建築遊船（Chicago Architecture Center River Cruise）",
+    "region": "芝加哥 (Chicago)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.8,
+    "tags": [
+      "#芝加哥",
+      "#建築遊船",
+      "#天際線巡禮",
+      "#FirstLady"
+    ],
+    "note": "全美體驗評價最高的90分鐘建築導覽遊船，搭乘First Lady穿梭芝加哥河，飽覽百年經典鋼構摩天大樓天際線。",
+    "address": "112 E Wacker Dr, Chicago, IL 60601",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Architecture+Center+River+Cruise+112+E+Wacker+Dr+Chicago"
+  },
+  {
+    "id": "us-028",
+    "name": "芝加哥藝術博物館（The Art Institute of Chicago）",
+    "region": "芝加哥 (Chicago)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.8,
+    "tags": [
+      "#芝加哥",
+      "#世界級美術館",
+      "#千禧公園旁",
+      "#大碗島的星期天"
+    ],
+    "note": "名列世界三大博物館之一，緊鄰千禧公園，館藏莫內《乾草堆》、梵谷《臥室》與秀拉《大碗島的星期天》等鎮館名作。",
+    "address": "111 S Michigan Ave, Chicago, IL 60603",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Art+Institute+of+Chicago+111+S+Michigan+Ave+Chicago"
+  },
+  {
+    "id": "us-029",
+    "name": "芝加哥河濱步道（Chicago Riverwalk）",
+    "region": "芝加哥 (Chicago)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.8,
+    "tags": [
+      "#芝加哥",
+      "#河濱步道",
+      "#戶外休閒",
+      "#露天河畔酒吧"
+    ],
+    "note": "貫穿市中心河北區與環區的景觀水岸步道，漫步河畔享受摩天樓倒影、開合橋景觀與露天酒館氛圍。",
+    "address": "Chicago Riverwalk, Chicago, IL 60601",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Riverwalk+Chicago"
+  },
+  {
+    "id": "us-030",
+    "name": "360 CHICAGO 觀景台（約翰漢考克大廈 TILT）",
+    "region": "芝加哥 (Chicago)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.6,
+    "tags": [
+      "#芝加哥",
+      "#密西根大道",
+      "#360觀景台",
+      "#TILT極限體驗"
+    ],
+    "note": "位於約翰漢考克中心94樓，坐擁密西根湖與芝加哥市景360度全景，招牌TILT向下傾斜30度玻璃窗刺激破表。",
+    "address": "875 N Michigan Ave 94th Floor, Chicago, IL 60611",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=360+CHICAGO+875+N+Michigan+Ave+Chicago"
+  },
+  {
+    "id": "us-031",
+    "name": "Au Cheval",
+    "region": "芝加哥 (Chicago)",
+    "type": "🥩 美式牛排/漢堡",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#全美最佳漢堡",
+      "#WestLoop",
+      "#厚切培根半熟蛋"
+    ],
+    "note": "位於West Loop的美式復古小餐館，長年被譽為全美最好吃漢堡，招牌雙層起司漢堡加厚切培根與太陽蛋必吃。",
+    "address": "800 W Randolph St, Chicago, IL 60607",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Au+Cheval+800+W+Randolph+St+Chicago"
+  },
+  {
+    "id": "us-032",
+    "name": "Lou Malnati's Pizzeria（River North 店）",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.5,
+    "tags": [
+      "#芝加哥",
+      "#正宗深盤披薩",
+      "#牛油脆皮",
+      "#RiverNorth"
+    ],
+    "note": "芝加哥老字號深盤披薩名店，招牌獨家Buttercrust牛油脆餅皮搭配厚實拉絲莫札瑞拉起司與新鮮壓碎番茄醬。",
+    "address": "439 N Wells St, Chicago, IL 60654",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Lou+Malnatis+Pizzeria+439+N+Wells+St+Chicago"
+  },
+  {
+    "id": "us-033",
+    "name": "The Purple Pig",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.5,
+    "tags": [
+      "#芝加哥",
+      "#米其林必比登",
+      "#地中海料理",
+      "#烤骨髓紅白酒"
+    ],
+    "note": "密西根大道上的米其林必比登名店，以「起司、豬肉與美酒」為宗旨，招牌烤牛骨髓、酥炸章魚腳與西班牙肉盤。",
+    "address": "444 N Michigan Ave, Chicago, IL 60611",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Purple+Pig+444+N+Michigan+Ave+Chicago"
+  },
+  {
+    "id": "us-034",
+    "name": "Wildberry Pancakes & Cafe",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.6,
+    "tags": [
+      "#芝加哥",
+      "#排隊早午餐",
+      "#綜合野莓薄煎餅",
+      "#千禧公園正對面"
+    ],
+    "note": "千禧公園正對面的排隊早午餐名店，招牌野莓薄煎餅（Signature Berry Bliss Pancakes）鮮奶油與新鮮莓果極致豐盛。",
+    "address": "130 E Randolph St, Chicago, IL 60601",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Wildberry+Pancakes+and+Cafe+130+E+Randolph+St+Chicago"
+  },
+  {
+    "id": "us-035",
+    "name": "計算機歷史博物館（Computer History Museum）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#科技發源地",
+      "#計算機博物館",
+      "#Cray超級電腦"
+    ],
+    "note": "鄰近Google山景城總部，館藏全球最齊全的計算機歷史文物、第一代Cray超級電腦、恩格爾巴特滑鼠與軟體革命展。",
+    "address": "1401 N Shoreline Blvd, Mountain View, CA 94043",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Computer+History+Museum+1401+N+Shoreline+Blvd+Mountain+View"
+  },
+  {
+    "id": "us-036",
+    "name": "史丹佛大學（Stanford University）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.8,
+    "tags": [
+      "#矽谷",
+      "#世界頂尖學府",
+      "#胡佛塔",
+      "#羅丹雕塑花園"
+    ],
+    "note": "孕育矽谷科技巨擘的學術聖殿，西班牙殖民復興式紅磚拱廊建築、壯麗紀念教堂、胡佛塔眺望與羅丹青銅雕塑花園。",
+    "address": "450 Serra Mall, Stanford, CA 94305",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Stanford+University+Stanford+CA"
+  },
+  {
+    "id": "us-037",
+    "name": "Apple Park Visitor Center",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🏙️ 必訪景點/地標",
+    "rating": 4.4,
+    "tags": [
+      "#矽谷",
+      "#ApplePark",
+      "#蘋果總部訪客中心",
+      "#太空船景觀台"
+    ],
+    "note": "蘋果庫比蒂諾太空船園區唯一對外開放的官方訪客中心，二樓露天景觀台可遠眺總部圓環建築，獨家販售官方紀念T恤。",
+    "address": "10600 N Tantau Ave, Cupertino, CA 95014",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Apple+Park+Visitor+Center+10600+N+Tantau+Ave+Cupertino"
+  },
+  {
+    "id": "us-038",
+    "name": "Santana Row（桑塔納街）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.6,
+    "tags": [
+      "#矽谷",
+      "#歐風精品街",
+      "#露天商場",
+      "#聖荷西地標"
+    ],
+    "note": "聖荷西高質感歐風露天步行商業街，林蔭大道旁林立設計師精品專賣店、露天咖啡館、高檔餐廳與對面的Valley Fair商場。",
+    "address": "377 Santana Row, San Jose, CA 95128",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Santana+Row+San+Jose"
+  },
+  {
+    "id": "us-039",
+    "name": "Dishdash Middle Eastern Cuisine（Sunnyvale）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.6,
+    "tags": [
+      "#矽谷",
+      "#中東地中海料理",
+      "#慢烤羊小排",
+      "#科技人最愛"
+    ],
+    "note": "桑尼維爾市中心極高評價中東地中海餐廳，招牌香料羊小排（Rack of Lamb）肉質軟嫩、雞肉塔吉鍋與鷹嘴豆泥極具水準。",
+    "address": "190 S Murphy Ave, Sunnyvale, CA 94086",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Dishdash+190+S+Murphy+Ave+Sunnyvale"
+  },
+  {
+    "id": "us-040",
+    "name": "丸一拉麵（Maru Ichi - Mountain View）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.4,
+    "tags": [
+      "#矽谷",
+      "#山景城美食街",
+      "#黑蒜油豚骨拉麵",
+      "#手工拉麵"
+    ],
+    "note": "山景城Castro街知名老牌日式手打拉麵店，招牌黑蒜油豚骨拉麵（Kuro Ramen）焦香濃郁，厚切叉燒肉軟嫩入味。",
+    "address": "368 Castro St, Mountain View, CA 94041",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Maru+Ichi+368+Castro+St+Mountain+View"
+  },
+  {
+    "id": "us-041",
+    "name": "The Boiling Crab（San Jose）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.5,
+    "tags": [
+      "#矽谷",
+      "#美式卡疆手抓海鮮",
+      "#TheWholeShaBang",
+      "#鮮美海產"
+    ],
+    "note": "聖荷西極致過癮的美式路易斯安那手抓海鮮，白蝦、藍蟹、帝王蟹腿拌入招牌大蒜檸檬特調醬汁（The Whole Sha-Bang）。",
+    "address": "1631 E Capitol Expy, San Jose, CA 95121",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Boiling+Crab+1631+E+Capitol+Expy+San+Jose"
+  },
+  {
+    "id": "us-042",
+    "name": "Philz Coffee（Sunnyvale）",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.6,
+    "tags": [
+      "#矽谷",
+      "#薄荷莫吉托冰咖啡",
+      "#客製手沖",
+      "#矽谷工程師標配"
+    ],
+    "note": "舊金山灣區靈魂咖啡品牌，每杯手沖依客製調配，招牌薄荷莫吉托冰咖啡（Mint Mojito Iced Coffee）以新鮮薄荷葉現打，清涼順口。",
+    "address": "125 S Frances St, Sunnyvale, CA 94086",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Philz+Coffee+125+S+Frances+St+Sunnyvale"
   }
 ]
