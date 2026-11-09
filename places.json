@@ -1,0 +1,367 @@
+[
+  {
+    "id": "us-001",
+    "name": "奧黑爾國際機場",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/%E5%A5%A7%E9%BB%91%E7%88%BE%E5%9C%8B%E9%9A%9B%E6%A9%9F%E5%A0%B4/data=!4m2!3m1!1s0x880fb4276a7762f3:0x511747070259ad4b"
+  },
+  {
+    "id": "us-002",
+    "name": "Swift & Sons",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Swift+%26+Sons/data=!4m2!3m1!1s0x880e2cd0c83cc1b1:0x7b08f1161b7e5"
+  },
+  {
+    "id": "us-003",
+    "name": "芝加哥：麥當勞50周年旗艦店",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#精選美食"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/%E8%8A%9D%E5%8A%A0%E5%93%A5%EF%BC%9A%E9%BA%A5%E7%95%B6%E5%8B%9E50%E5%91%A8%E5%B9%B4%E6%97%97%E8%89%A6%E5%BA%97/data=!4m2!3m1!1s0x880e2cb3a8b88adb:0xcc659a690fc90c93"
+  },
+  {
+    "id": "us-004",
+    "name": "Skydeck Chicago",
+    "region": "芝加哥 (Chicago)",
+    "type": "🏙️ 打卡景點/住宿",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#打卡景點/住宿"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/Skydeck+Chicago/data=!4m2!3m1!1s0x880e2cbee269fbbb:0xcf09307f0945d4fd"
+  },
+  {
+    "id": "us-005",
+    "name": "千禧公園",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/%E5%8D%83%E7%A6%A7%E5%85%AC%E5%9C%92/data=!4m2!3m1!1s0x880e2ca68a4f9c03:0x44182cdcb5a91004"
+  },
+  {
+    "id": "us-006",
+    "name": "聯合中心",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/%E8%81%AF%E5%90%88%E4%B8%AD%E5%BF%83/data=!4m2!3m1!1s0x880e2d3ecaa9b54f:0x9b93f0068cf00344"
+  },
+  {
+    "id": "us-007",
+    "name": "Michael Jordan's Steak House Chicago",
+    "region": "芝加哥 (Chicago)",
+    "type": "🥩 美式牛排/漢堡",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#美式牛排/漢堡"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/Michael+Jordan's+Steak+House+Chicago/data=!4m2!3m1!1s0x880e2cac0d1c94d7:0x8a210fe2368ae6b"
+  },
+  {
+    "id": "us-008",
+    "name": "Harry Potter Shop Chicago",
+    "region": "芝加哥 (Chicago)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#購物採買"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/Harry+Potter+Shop+Chicago/data=!4m2!3m1!1s0x880e2d0069392cf9:0xbe5e3ad52e84acb9"
+  },
+  {
+    "id": "us-009",
+    "name": "Kyuramen x TBaar - Downtown Chicago",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#異國/亞洲料理"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/Kyuramen+x+TBaar+-+Downtown+Chicago/data=!4m2!3m1!1s0x880e2d25f9cf1653:0xccdd7af40d1470e"
+  },
+  {
+    "id": "us-010",
+    "name": "Portillo's & Barnelli's Chicago",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#異國/亞洲料理"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/Portillo's+%26+Barnelli's+Chicago/data=!4m2!3m1!1s0x880e2cb30f84f07f:0x5094004e07cb63ef"
+  },
+  {
+    "id": "us-011",
+    "name": "Gordon Ramsay Burger - Chicago",
+    "region": "芝加哥 (Chicago)",
+    "type": "🥩 美式牛排/漢堡",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#美式牛排/漢堡"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/Gordon+Ramsay+Burger+-+Chicago/data=!4m2!3m1!1s0x880e2deb3f180329:0x3c5e9321838f57ca"
+  },
+  {
+    "id": "us-012",
+    "name": "Giordano's",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Giordano's/data=!4m2!3m1!1s0x880fd35325c231b9:0x47e5219e38a2e2ff"
+  },
+  {
+    "id": "us-013",
+    "name": "Pho Kim Long",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#異國/亞洲料理"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Pho+Kim+Long/data=!4m2!3m1!1s0x808fcea4cfca7903:0xd9914a00ddc4387"
+  },
+  {
+    "id": "us-014",
+    "name": "Texas Roadhouse",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Texas+Roadhouse/data=!4m2!3m1!1s0x808f95c694ed59e3:0xd748a3dcfec2d69d"
+  },
+  {
+    "id": "us-015",
+    "name": "Tommy Thai",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#異國/亞洲料理"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Tommy+Thai/data=!4m2!3m1!1s0x808fb0c93685f247:0x3103d61a37e3a2be"
+  },
+  {
+    "id": "us-016",
+    "name": "Google 1674",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#購物採買",
+      "#員工的 Google s"
+    ],
+    "note": "員工的 Google store",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Google+1674/data=!4m2!3m1!1s0x808fb9fe0517815b:0x1923d2a88bf8651a"
+  },
+  {
+    "id": "us-017",
+    "name": "So Gong Dong Tofu House",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#異國/亞洲料理"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/So+Gong+Dong+Tofu+House/data=!4m2!3m1!1s0x808fba63166b61b5:0x6d983cd7151c0e6c"
+  },
+  {
+    "id": "us-018",
+    "name": "Google Store Mountain View",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#購物採買"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Google+Store+Mountain+View/data=!4m2!3m1!1s0x808fb9dc7cc3d9d7:0x7f03e216552e5a09"
+  },
+  {
+    "id": "us-019",
+    "name": "Costco Wholesale",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#購物採買"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Costco+Wholesale/data=!4m2!3m1!1s0x808fba0558b2a12f:0xbb457a3972673971"
+  },
+  {
+    "id": "us-020",
+    "name": "Phở Trần Vũ",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Ph%E1%BB%9F+Tr%E1%BA%A7n+V%C5%A9/data=!4m2!3m1!1s0x808fba0f93eaaaab:0x37c4df35ac29dcce"
+  },
+  {
+    "id": "us-021",
+    "name": "Google 2017",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#精選美食"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Google+2017/data=!4m2!3m1!1s0x808fb91f10b00865:0xe6ba0a260c175dec"
+  },
+  {
+    "id": "us-022",
+    "name": "Safeway",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#購物採買"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Safeway/data=!4m2!3m1!1s0x808fb664f6d9797f:0xf24f0789002e2097"
+  },
+  {
+    "id": "us-023",
+    "name": "康福特印森尼韋爾-矽谷",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🏙️ 打卡景點/住宿",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#打卡景點/住宿"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/%E5%BA%B7%E7%A6%8F%E7%89%B9%E5%8D%B0%E6%A3%AE%E5%B0%BC%E9%9F%8B%E7%88%BE-%E7%9F%BD%E8%B0%B7/data=!4m2!3m1!1s0x808fb7b1f0dd7711:0x27a32f07d0884c9f"
+  },
+  {
+    "id": "us-024",
+    "name": "海厄特普萊斯芝加哥/里弗北",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#芝加哥",
+      "#精選美食"
+    ],
+    "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。",
+    "address": "芝加哥 (Chicago)",
+    "mapUrl": "https://www.google.com/maps/place/%E6%B5%B7%E5%8E%84%E7%89%B9%E6%99%AE%E8%90%8A%E6%96%AF%E8%8A%9D%E5%8A%A0%E5%93%A5%2F%E9%87%8C%E5%BC%97%E5%8C%97/data=!4m2!3m1!1s0x880e2cb22e4682f9:0xf79721ef661fe429"
+  },
+  {
+    "id": "us-025",
+    "name": "Grand Century Shopping Mall",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#購物採買"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/Grand+Century+Shopping+Mall/data=!4m2!3m1!1s0x808fcd2aefb35ccd:0xc3e47b8852ce6bb8"
+  },
+  {
+    "id": "us-026",
+    "name": "San Francisco Premium Outlets",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🛍️ 購物採買",
+    "rating": 4.7,
+    "tags": [
+      "#矽谷",
+      "#購物採買"
+    ],
+    "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。",
+    "address": "矽谷 (Silicon Valley)",
+    "mapUrl": "https://www.google.com/maps/place/San+Francisco+Premium+Outlets/data=!4m2!3m1!1s0x89e3783bfbe0e0ab:0x4d73361da6a2cdb8"
+  }
+]

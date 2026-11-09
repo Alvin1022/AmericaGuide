@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>美國私房地圖 | 芝加哥、矽谷、舊金山精選導覽</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        ios: {
+                            blue: '#007AFF',
+                            green: '#34C759',
+                            orange: '#FF9500',
+                            red: '#FF3B30',
+                            gray: '#8E8E93',
+                            bg: '#F2F2F7',
+                            darkBg: '#161A22',
+                            cardDark: '#212836'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root, [data-theme="light"] {
+            --bg-canvas: #f2f2f7;
+            --bg-surface: #ffffff;
+            --bg-surface-sub: #f8f9fa;
+            --bg-input: rgba(142, 142, 147, 0.12);
+            --border-surface: rgba(0, 0, 0, 0.06);
+            --border-subtle: rgba(0, 0, 0, 0.04);
+            
+            --text-primary: #1c1c1e;
+            --text-secondary: #3a3a3c;
+            --text-tertiary: #8e8e93;
+
+            --note-bg: rgba(79, 70, 229, 0.06);
+            --note-border: #4f46e5;
+            --note-text: #334155;
+
+            --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-nav: 0 -2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="dark"] {
+            --bg-canvas: #141820;
+            --bg-surface: #1e2532;
+            --bg-surface-sub: #171d27;
+            --bg-input: rgba(255, 255, 255, 0.08);
+            --border-surface: rgba(255, 255, 255, 0.08);
+            --border-subtle: rgba(255, 255, 255, 0.05);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+
+            --note-bg: rgba(79, 70, 229, 0.12);
+            --note-border: #4f46e5;
+            --note-text: #e2e8f0;
+
+            --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-nav: 0 -4px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-secondary);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Plus Jakarta Sans", "Noto Sans TC", Roboto, sans-serif;
+            padding-bottom: calc(76px + env(safe-area-inset-bottom, 16px));
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .ui-surface {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-surface);
+            box-shadow: var(--shadow-card);
+        }
+
+        .note-block {
+            background-color: var(--note-bg);
+            border-left: 3px solid var(--note-border);
+            color: var(--note-text);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .safe-bottom {
+            padding-bottom: max(env(safe-area-inset-bottom), 14px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased overflow-x-hidden">
+
+    <!-- iOS 18 Style Translucent Navigation Bar -->
+    <header class="sticky top-0 z-40 px-3.5 sm:px-4 h-[50px] bg-white/85 dark:bg-[#141820]/85 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/5 transition-colors flex items-center">
+        <div class="app-container max-w-xl md:max-w-5xl lg:max-w-7xl mx-auto w-full flex items-center justify-between gap-2">
+            <!-- Brand & Count -->
+            <div class="flex items-center gap-1.5 shrink-0">
+                <span class="text-lg">🇺🇸</span>
+                <h1 class="text-[15px] font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap">美國私房地圖</h1>
+                <span class="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100/80 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 shrink-0" id="header-count-pill">26 處</span>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="flex items-center gap-1.5 shrink-0">
+                <!-- Universal Guide Switcher Button -->
+                <button onclick="openGuideSwitcherModal()" class="h-8 px-2.5 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/80 dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 font-bold text-xs transition active:scale-95 flex items-center gap-1.5 shrink-0" title="切換其他私房導覽">
+                    <i class="fa-solid fa-compass text-indigo-500 text-xs"></i>
+                    <span class="text-[11px] hidden sm:inline">切換導覽</span>
+                </button>
+
+                <!-- Layout Mode Toggle (Desktop) -->
+                <button onclick="toggleLayoutMode()" class="hidden md:flex h-8 px-2.5 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/80 dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 font-semibold text-xs transition active:scale-95 items-center gap-1" id="layout-toggle-btn" title="切換版面寬度">
+                    <i class="fa-solid fa-desktop text-indigo-600 dark:text-indigo-400 text-xs" id="layout-icon"></i>
+                    <span id="layout-text" class="text-[11px]">自適應</span>
+                </button>
+
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" class="h-8 w-8 sm:w-auto sm:px-2.5 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/80 dark:bg-[#1e2532] text-slate-700 dark:text-amber-300 font-semibold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shrink-0" id="theme-toggle-btn" title="切換深淺模式">
+                    <i class="fa-solid fa-moon text-indigo-500 text-xs" id="theme-icon"></i>
+                    <span id="theme-text" class="text-[11px] hidden sm:inline">深色</span>
+                </button>
+
+                <!-- Fast Add Place Button -->
+                <button onclick="openAddModal()" class="h-8 w-8 sm:w-auto sm:px-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm transition active:scale-95 flex items-center justify-center gap-1 shrink-0" title="新增地點">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span class="hidden sm:inline">新增</span>
+                </button>
+
+                <!-- More Menu Trigger -->
+                <button onclick="openMenuModal()" class="h-8 w-8 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/80 dark:bg-[#1e2532] text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs active:scale-95 shrink-0" title="更多設定">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- iOS Style Sticky Segmented Tabs -->
+    <div class="sticky top-[50px] z-30 px-4 pt-2 pb-1.5 bg-white/85 dark:bg-[#141820]/85 backdrop-blur-xl border-b border-slate-200/40 dark:border-white/5">
+        <div class="app-container max-w-xl md:max-w-5xl lg:max-w-7xl mx-auto transition-all">
+            <div class="p-1 rounded-xl bg-slate-200/60 dark:bg-[#1e2532] flex items-center gap-1 text-xs font-semibold overflow-x-auto hide-scrollbar" id="category-tabs">
+                
+                <button onclick="setTypeFilter('ALL')" data-type="ALL" class="type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 bg-white dark:bg-[#283241] text-indigo-700 dark:text-indigo-400 shadow-sm font-bold active whitespace-nowrap">
+                    <i class="fa-solid fa-layer-group text-[11px]"></i> <span>全部 (26)</span>
+                </button>
+                <button onclick="setTypeFilter('🍽️ 精選美食')" data-type="🍽️ 精選美食" class="type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-utensils text-[11px]"></i> <span>精選美食</span>
+                </button>
+                <button onclick="setTypeFilter('🥩 美式牛排/漢堡')" data-type="🥩 美式牛排/漢堡" class="type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-burger text-[11px]"></i> <span>美式牛排/漢堡</span>
+                </button>
+                <button onclick="setTypeFilter('🍜 異國/亞洲料理')" data-type="🍜 異國/亞洲料理" class="type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-bowl-food text-[11px]"></i> <span>異國/亞洲料理</span>
+                </button>
+                <button onclick="setTypeFilter('🛍️ 購物採買')" data-type="🛍️ 購物採買" class="type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-bag-shopping text-[11px]"></i> <span>購物採買</span>
+                </button>
+                <button onclick="setTypeFilter('🏙️ 打卡景點/住宿')" data-type="🏙️ 打卡景點/住宿" class="type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-city text-[11px]"></i> <span>打卡景點/住宿</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="app-container max-w-xl md:max-w-5xl lg:max-w-7xl mx-auto w-full px-4 pt-2.5 space-y-3 transition-all">
+
+        <!-- Search Bar -->
+        <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-input" oninput="applyFilters()" placeholder="搜尋店名、地址、備註（例如：牛肉湯、炸雞、咖啡、#台南）..." class="w-full pl-9 pr-8 py-2.5 bg-slate-200/60 dark:bg-[#1e2532] border border-transparent focus:border-indigo-500 rounded-full text-slate-900 dark:text-white font-medium placeholder-slate-400 text-xs focus:outline-none transition">
+            <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600 text-xs">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Region Filter Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto hide-scrollbar py-0.5" id="region-filter-container">
+            
+            <button data-region="全部區域" onclick="setRegionFilter('全部區域')" class="region-btn active shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-indigo-600 text-white shadow-sm">全部區域</button>
+            <button data-region="芝加哥 (Chicago)" onclick="setRegionFilter('芝加哥 (Chicago)')" class="region-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/10">芝加哥 (Chicago)</button>
+            <button data-region="矽谷 (Silicon Valley)" onclick="setRegionFilter('矽谷 (Silicon Valley)')" class="region-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/10">矽谷 (Silicon Valley)</button>
+        </div>
+
+        <!-- Curated Tags -->
+        <div class="flex items-center gap-1.5 overflow-x-auto hide-scrollbar py-0.5" id="hot-tags-container">
+            <!-- Dynamically generated tags -->
+        </div>
+
+        <!-- Results Info Bar -->
+        <div class="flex items-center justify-between px-1 pt-1 pb-0.5 text-xs">
+            <span class="font-bold text-slate-700 dark:text-slate-300" id="filtered-count-badge">共 26 處推薦地點</span>
+            <button onclick="resetAllFilters()" id="reset-filter-btn" class="hidden text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
+                <i class="fa-solid fa-rotate-left text-[10px]"></i> 清除所有篩選
+            </button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="app-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5" id="places-grid">
+            <!-- Rendered by JS -->
+        </div>
+
+        <!-- Empty Results Message -->
+        <div id="no-results-msg" class="hidden py-14 text-center text-slate-400 space-y-2">
+            <i class="fa-solid fa-magnifying-glass text-3xl opacity-30"></i>
+            <p class="text-xs font-bold text-slate-500">找不到符合條件的地點</p>
+            <button onclick="resetAllFilters()" class="text-xs text-indigo-600 font-bold underline">重置篩選條件</button>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button onclick="scrollToTop()" id="back-to-top-btn" class="fixed right-4 bottom-8 z-40 w-9 h-9 rounded-full bg-slate-900/80 dark:bg-white/90 text-white dark:text-slate-900 shadow-md flex items-center justify-center text-xs opacity-0 pointer-events-none transition-all active:scale-95" title="回到頂部">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ==================== MODALS ==================== -->
+    
+    <!-- ==================== UNIVERSAL GUIDE SWITCHER MODAL ==================== -->
+    <div id="guide-switcher-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="w-full max-w-sm bg-white dark:bg-[#1e2532] rounded-3xl p-5 space-y-3.5 border border-slate-200/80 dark:border-white/10 shadow-2xl">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/10">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-map-location-dot text-amber-500 text-base"></i>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white">切換私房導覽地圖</h3>
+                </div>
+                <button onclick="closeModal('guide-switcher-modal')" class="p-1 text-slate-400 hover:text-slate-600 text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-2 text-xs">
+                <!-- 1. TaoyuanGuide -->
+                <a href="javascript:void(0)" onclick="navigateToGuide('TaoyuanGuide')" class="flex items-center justify-between p-3 rounded-2xl border border-slate-200/70 dark:border-white/5 hover:border-amber-500/50 hover:bg-amber-50/50 dark:hover:bg-amber-950/20 transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🍑</span>
+                        <div>
+                            <div class="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 flex items-center gap-1.5">
+                                桃園私房導覽
+                                <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-semibold">115 處</span>
+                            </div>
+                            <div class="text-[11px] text-slate-500 dark:text-slate-400">在地景點、夜市、活魚與私房小吃</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-amber-600 text-xs"></i>
+                </a>
+
+                <!-- 2. TaiwanGuide -->
+                <a href="javascript:void(0)" onclick="navigateToGuide('TaiwanGuide')" class="flex items-center justify-between p-3 rounded-2xl border border-slate-200/70 dark:border-white/5 hover:border-sky-500/50 hover:bg-sky-50/50 dark:hover:bg-sky-950/20 transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🇹🇼</span>
+                        <div>
+                            <div class="font-bold text-slate-900 dark:text-white group-hover:text-sky-600 flex items-center gap-1.5">
+                                全台美食指南
+                                <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-semibold">540 處</span>
+                            </div>
+                            <div class="text-[11px] text-slate-500 dark:text-slate-400">雙北、新竹、台中、台南等全台名店</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-sky-600 text-xs"></i>
+                </a>
+
+                <!-- 3. VietnamGuide -->
+                <a href="javascript:void(0)" onclick="navigateToGuide('VietnamGuide')" class="flex items-center justify-between p-3 rounded-2xl border border-slate-200/70 dark:border-white/5 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🇻🇳</span>
+                        <div>
+                            <div class="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 flex items-center gap-1.5">
+                                越南私房導覽
+                                <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold">118 處</span>
+                            </div>
+                            <div class="text-[11px] text-slate-500 dark:text-slate-400">慈山、北寧、河內米其林、雙城商場</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-emerald-600 text-xs"></i>
+                </a>
+
+                <!-- 4. AmericaGuide -->
+                <a href="javascript:void(0)" onclick="navigateToGuide('AmericaGuide')" class="flex items-center justify-between p-3 rounded-2xl border border-slate-200/70 dark:border-white/5 hover:border-indigo-500/50 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🇺🇸</span>
+                        <div>
+                            <div class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 flex items-center gap-1.5">
+                                美國私房地圖
+                                <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 font-semibold">26 處</span>
+                            </div>
+                            <div class="text-[11px] text-slate-500 dark:text-slate-400">芝加哥、矽谷、舊金山精選餐廳與地標</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-600 text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 1. Add / Edit Modal -->
+    <div id="place-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-0 sm:p-4">
+        <div class="w-full sm:max-w-md bg-white dark:bg-[#1e2532] rounded-t-3xl sm:rounded-3xl p-5 space-y-3.5 max-h-[90vh] overflow-y-auto hide-scrollbar border border-slate-200/80 dark:border-white/10 shadow-2xl">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/10">
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white" id="modal-title">新增私房地點</h3>
+                <button onclick="closeModal('place-modal')" class="p-1 text-slate-400 hover:text-slate-600 text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="place-form" onsubmit="handleSavePlace(event)" class="space-y-2.5 text-xs">
+                <input type="hidden" id="form-id">
+                
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">地點名稱 *</label>
+                    <input type="text" id="form-name" required placeholder="例如：在地牛肉湯、人氣甜點" class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">所屬區域</label>
+                        <select id="form-region" class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                            <option value="芝加哥 (Chicago)">芝加哥 (Chicago)</option><option value="矽谷 (Silicon Valley)">矽谷 (Silicon Valley)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">類型分類</label>
+                        <select id="form-type" class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                            <option value="🍽️ 精選美食">精選美食</option><option value="🥩 美式牛排/漢堡">美式牛排/漢堡</option><option value="🍜 異國/亞洲料理">異國/亞洲料理</option><option value="🛍️ 購物採買">購物採買</option><option value="🏙️ 打卡景點/住宿">打卡景點/住宿</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">評分</label>
+                        <input type="number" step="0.1" min="1" max="5" id="form-rating" value="4.5" class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">地址 / 地標</label>
+                        <input type="text" id="form-address" placeholder="行政區或具體地址" class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">自訂標籤 (逗號分隔)</label>
+                    <input type="text" id="form-tags" placeholder="#手沖咖啡, #宵夜, #必吃" class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Google Maps 網址 (選填)</label>
+                    <input type="url" id="form-mapurl" placeholder="https://maps.google.com/?q=..." class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">推薦筆記</label>
+                    <textarea id="form-note" rows="2" placeholder="備註推薦菜色、停車提醒、營業時間..." class="w-full px-3 py-2 bg-slate-100/70 dark:bg-[#141820] border border-transparent focus:border-indigo-500 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none"></textarea>
+                </div>
+
+                <div class="flex items-center gap-2 pt-2">
+                    <button type="button" onclick="closeModal('place-modal')" class="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 font-semibold">取消</button>
+                    <button type="submit" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-sm">儲存地點</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Manage Menu Modal -->
+    <div id="menu-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-0 sm:p-4">
+        <div class="w-full sm:max-w-xs bg-white dark:bg-[#1e2532] rounded-t-3xl sm:rounded-3xl p-5 space-y-3 border border-slate-200/80 dark:border-white/10 shadow-2xl text-xs font-semibold">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/10">
+                <span class="text-sm font-bold text-slate-900 dark:text-white">資料管理設定</span>
+                <button onclick="closeModal('menu-modal')" class="p-1 text-slate-400 hover:text-slate-600 text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <!-- Layout Mode Selection in Menu -->
+            <div class="p-2.5 rounded-2xl bg-slate-50 dark:bg-[#141820] border border-slate-200/60 dark:border-white/5 space-y-1.5">
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                    <i class="fa-solid fa-sliders text-indigo-600 mr-1"></i> 版面寬度設定
+                </span>
+                <div class="grid grid-cols-3 gap-1 text-[11px]">
+                    <button onclick="setLayoutMode('auto')" id="layout-btn-auto" class="py-1.5 px-1 rounded-xl text-center font-bold border transition bg-indigo-600 text-white shadow-sm">
+                        ⚡ 自適應
+                    </button>
+                    <button onclick="setLayoutMode('mobile')" id="layout-btn-mobile" class="py-1.5 px-1 rounded-xl text-center font-semibold border transition bg-white dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-white/10">
+                        📱 手機
+                    </button>
+                    <button onclick="setLayoutMode('desktop')" id="layout-btn-desktop" class="py-1.5 px-1 rounded-xl text-center font-semibold border transition bg-white dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-white/10">
+                        🖥️ 寬螢幕
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="exportJSON()" class="w-full py-2.5 px-3 rounded-xl border border-slate-200/80 dark:border-white/10 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-[#141820]">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-download text-indigo-600"></i> 匯出備份 JSON</span>
+                <i class="fa-solid fa-angle-right text-slate-400 text-xs"></i>
+            </button>
+            <label class="w-full py-2.5 px-3 rounded-xl border border-slate-200/80 dark:border-white/10 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-[#141820] cursor-pointer">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-upload text-sky-600"></i> 匯入備份 JSON</span>
+                <input type="file" id="import-file-input" onchange="importJSON(event)" accept=".json" class="hidden">
+                <i class="fa-solid fa-angle-right text-slate-400 text-xs"></i>
+            </label>
+            <button onclick="confirmResetModal()" class="w-full py-2.5 px-3 rounded-xl border border-rose-200 dark:border-rose-900/30 text-rose-600 flex items-center justify-between hover:bg-rose-50 dark:hover:bg-rose-950/20">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-rotate-left"></i> 重置回預設 26 地點</span>
+                <i class="fa-solid fa-angle-right text-rose-400 text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. Confirmation Dialog Modal -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="w-full max-w-xs bg-white dark:bg-[#1e2532] rounded-2xl p-5 space-y-3.5 border border-slate-200/80 dark:border-white/10 shadow-2xl text-center">
+            <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center mx-auto text-base">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">確定重置？</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">所有自訂新增與修改紀錄將還原至預設 26 處地點。</p>
+            </div>
+            <div class="flex items-center gap-2 pt-1 text-xs font-bold">
+                <button onclick="closeModal('confirm-modal')" class="flex-1 py-2 rounded-xl border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300">取消</button>
+                <button onclick="executeResetData()" class="flex-1 py-2 rounded-xl bg-rose-600 text-white shadow-sm">確定重置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-14 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 rounded-full bg-slate-900/90 dark:bg-white/95 text-white dark:text-slate-900 text-xs font-bold shadow-xl backdrop-blur-md transition-all">
+        通知訊息
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const DEFAULT_PLACES = [{"id": "us-001", "name": "奧黑爾國際機場", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/%E5%A5%A7%E9%BB%91%E7%88%BE%E5%9C%8B%E9%9A%9B%E6%A9%9F%E5%A0%B4/data=!4m2!3m1!1s0x880fb4276a7762f3:0x511747070259ad4b"}, {"id": "us-002", "name": "Swift & Sons", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Swift+%26+Sons/data=!4m2!3m1!1s0x880e2cd0c83cc1b1:0x7b08f1161b7e5"}, {"id": "us-003", "name": "芝加哥：麥當勞50周年旗艦店", "region": "芝加哥 (Chicago)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#芝加哥", "#精選美食"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/%E8%8A%9D%E5%8A%A0%E5%93%A5%EF%BC%9A%E9%BA%A5%E7%95%B6%E5%8B%9E50%E5%91%A8%E5%B9%B4%E6%97%97%E8%89%A6%E5%BA%97/data=!4m2!3m1!1s0x880e2cb3a8b88adb:0xcc659a690fc90c93"}, {"id": "us-004", "name": "Skydeck Chicago", "region": "芝加哥 (Chicago)", "type": "🏙️ 打卡景點/住宿", "rating": 4.7, "tags": ["#芝加哥", "#打卡景點/住宿"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/Skydeck+Chicago/data=!4m2!3m1!1s0x880e2cbee269fbbb:0xcf09307f0945d4fd"}, {"id": "us-005", "name": "千禧公園", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/%E5%8D%83%E7%A6%A7%E5%85%AC%E5%9C%92/data=!4m2!3m1!1s0x880e2ca68a4f9c03:0x44182cdcb5a91004"}, {"id": "us-006", "name": "聯合中心", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/%E8%81%AF%E5%90%88%E4%B8%AD%E5%BF%83/data=!4m2!3m1!1s0x880e2d3ecaa9b54f:0x9b93f0068cf00344"}, {"id": "us-007", "name": "Michael Jordan's Steak House Chicago", "region": "芝加哥 (Chicago)", "type": "🥩 美式牛排/漢堡", "rating": 4.7, "tags": ["#芝加哥", "#美式牛排/漢堡"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/Michael+Jordan's+Steak+House+Chicago/data=!4m2!3m1!1s0x880e2cac0d1c94d7:0x8a210fe2368ae6b"}, {"id": "us-008", "name": "Harry Potter Shop Chicago", "region": "芝加哥 (Chicago)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#芝加哥", "#購物採買"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/Harry+Potter+Shop+Chicago/data=!4m2!3m1!1s0x880e2d0069392cf9:0xbe5e3ad52e84acb9"}, {"id": "us-009", "name": "Kyuramen x TBaar - Downtown Chicago", "region": "芝加哥 (Chicago)", "type": "🍜 異國/亞洲料理", "rating": 4.7, "tags": ["#芝加哥", "#異國/亞洲料理"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/Kyuramen+x+TBaar+-+Downtown+Chicago/data=!4m2!3m1!1s0x880e2d25f9cf1653:0xccdd7af40d1470e"}, {"id": "us-010", "name": "Portillo's & Barnelli's Chicago", "region": "芝加哥 (Chicago)", "type": "🍜 異國/亞洲料理", "rating": 4.7, "tags": ["#芝加哥", "#異國/亞洲料理"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/Portillo's+%26+Barnelli's+Chicago/data=!4m2!3m1!1s0x880e2cb30f84f07f:0x5094004e07cb63ef"}, {"id": "us-011", "name": "Gordon Ramsay Burger - Chicago", "region": "芝加哥 (Chicago)", "type": "🥩 美式牛排/漢堡", "rating": 4.7, "tags": ["#芝加哥", "#美式牛排/漢堡"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/Gordon+Ramsay+Burger+-+Chicago/data=!4m2!3m1!1s0x880e2deb3f180329:0x3c5e9321838f57ca"}, {"id": "us-012", "name": "Giordano's", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Giordano's/data=!4m2!3m1!1s0x880fd35325c231b9:0x47e5219e38a2e2ff"}, {"id": "us-013", "name": "Pho Kim Long", "region": "矽谷 (Silicon Valley)", "type": "🍜 異國/亞洲料理", "rating": 4.7, "tags": ["#矽谷", "#異國/亞洲料理"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Pho+Kim+Long/data=!4m2!3m1!1s0x808fcea4cfca7903:0xd9914a00ddc4387"}, {"id": "us-014", "name": "Texas Roadhouse", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Texas+Roadhouse/data=!4m2!3m1!1s0x808f95c694ed59e3:0xd748a3dcfec2d69d"}, {"id": "us-015", "name": "Tommy Thai", "region": "矽谷 (Silicon Valley)", "type": "🍜 異國/亞洲料理", "rating": 4.7, "tags": ["#矽谷", "#異國/亞洲料理"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Tommy+Thai/data=!4m2!3m1!1s0x808fb0c93685f247:0x3103d61a37e3a2be"}, {"id": "us-016", "name": "Google 1674", "region": "矽谷 (Silicon Valley)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#矽谷", "#購物採買", "#員工的 Google s"], "note": "員工的 Google store", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Google+1674/data=!4m2!3m1!1s0x808fb9fe0517815b:0x1923d2a88bf8651a"}, {"id": "us-017", "name": "So Gong Dong Tofu House", "region": "矽谷 (Silicon Valley)", "type": "🍜 異國/亞洲料理", "rating": 4.7, "tags": ["#矽谷", "#異國/亞洲料理"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/So+Gong+Dong+Tofu+House/data=!4m2!3m1!1s0x808fba63166b61b5:0x6d983cd7151c0e6c"}, {"id": "us-018", "name": "Google Store Mountain View", "region": "矽谷 (Silicon Valley)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#矽谷", "#購物採買"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Google+Store+Mountain+View/data=!4m2!3m1!1s0x808fb9dc7cc3d9d7:0x7f03e216552e5a09"}, {"id": "us-019", "name": "Costco Wholesale", "region": "矽谷 (Silicon Valley)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#矽谷", "#購物採買"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Costco+Wholesale/data=!4m2!3m1!1s0x808fba0558b2a12f:0xbb457a3972673971"}, {"id": "us-020", "name": "Phở Trần Vũ", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Ph%E1%BB%9F+Tr%E1%BA%A7n+V%C5%A9/data=!4m2!3m1!1s0x808fba0f93eaaaab:0x37c4df35ac29dcce"}, {"id": "us-021", "name": "Google 2017", "region": "矽谷 (Silicon Valley)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#矽谷", "#精選美食"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Google+2017/data=!4m2!3m1!1s0x808fb91f10b00865:0xe6ba0a260c175dec"}, {"id": "us-022", "name": "Safeway", "region": "矽谷 (Silicon Valley)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#矽谷", "#購物採買"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Safeway/data=!4m2!3m1!1s0x808fb664f6d9797f:0xf24f0789002e2097"}, {"id": "us-023", "name": "康福特印森尼韋爾-矽谷", "region": "矽谷 (Silicon Valley)", "type": "🏙️ 打卡景點/住宿", "rating": 4.7, "tags": ["#矽谷", "#打卡景點/住宿"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/%E5%BA%B7%E7%A6%8F%E7%89%B9%E5%8D%B0%E6%A3%AE%E5%B0%BC%E9%9F%8B%E7%88%BE-%E7%9F%BD%E8%B0%B7/data=!4m2!3m1!1s0x808fb7b1f0dd7711:0x27a32f07d0884c9f"}, {"id": "us-024", "name": "海厄特普萊斯芝加哥/里弗北", "region": "芝加哥 (Chicago)", "type": "🍽️ 精選美食", "rating": 4.7, "tags": ["#芝加哥", "#精選美食"], "note": "芝加哥 (Chicago)精選地標，美國行程必訪推薦。", "address": "芝加哥 (Chicago)", "mapUrl": "https://www.google.com/maps/place/%E6%B5%B7%E5%8E%84%E7%89%B9%E6%99%AE%E8%90%8A%E6%96%AF%E8%8A%9D%E5%8A%A0%E5%93%A5%2F%E9%87%8C%E5%BC%97%E5%8C%97/data=!4m2!3m1!1s0x880e2cb22e4682f9:0xf79721ef661fe429"}, {"id": "us-025", "name": "Grand Century Shopping Mall", "region": "矽谷 (Silicon Valley)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#矽谷", "#購物採買"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/Grand+Century+Shopping+Mall/data=!4m2!3m1!1s0x808fcd2aefb35ccd:0xc3e47b8852ce6bb8"}, {"id": "us-026", "name": "San Francisco Premium Outlets", "region": "矽谷 (Silicon Valley)", "type": "🛍️ 購物採買", "rating": 4.7, "tags": ["#矽谷", "#購物採買"], "note": "矽谷 (Silicon Valley)精選地標，美國行程必訪推薦。", "address": "矽谷 (Silicon Valley)", "mapUrl": "https://www.google.com/maps/place/San+Francisco+Premium+Outlets/data=!4m2!3m1!1s0x89e3783bfbe0e0ab:0x4d73361da6a2cdb8"}];
+
+        let placesState = [];
+        let currentRegion = 'ALL';
+        let currentType = 'ALL';
+        let currentTag = 'ALL';
+        let currentLayoutMode = 'auto';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('us_theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('us_theme', theme);
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            const btn = document.getElementById('theme-toggle-btn');
+            
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (icon) icon.className = 'fa-solid fa-sun text-amber-400 text-xs';
+                if (text) text.innerText = '淺色';
+                if (btn) btn.setAttribute('title', '切換為淺色模式');
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) icon.className = 'fa-solid fa-moon text-indigo-500 text-xs';
+                if (text) text.innerText = '深色';
+                if (btn) btn.setAttribute('title', '切換為深色模式');
+            }
+        }
+
+        function initLayoutMode() {
+            const saved = localStorage.getItem('us_layout_mode') || 'auto';
+            setLayoutMode(saved, false);
+        }
+
+        function toggleLayoutMode() {
+            const modes = ['auto', 'desktop', 'mobile'];
+            const nextIdx = (modes.indexOf(currentLayoutMode) + 1) % modes.length;
+            setLayoutMode(modes[nextIdx], true);
+        }
+
+        function setLayoutMode(mode, showNotice = true) {
+            currentLayoutMode = mode;
+            localStorage.setItem('us_layout_mode', mode);
+
+            const containers = document.querySelectorAll('.app-container');
+            const grids = document.querySelectorAll('.app-grid');
+            const icon = document.getElementById('layout-icon');
+            const text = document.getElementById('layout-text');
+
+            ['auto', 'mobile', 'desktop'].forEach(m => {
+                const b = document.getElementById(`layout-btn-${m}`);
+                if (b) {
+                    if (m === mode) {
+                        b.className = 'py-1.5 px-1 rounded-xl text-center font-bold border transition bg-indigo-600 text-white shadow-sm';
+                    } else {
+                        b.className = 'py-1.5 px-1 rounded-xl text-center font-semibold border transition bg-white dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-white/10';
+                    }
+                }
+            });
+
+            if (mode === 'mobile') {
+                containers.forEach(c => {
+                    c.classList.remove('md:max-w-5xl', 'lg:max-w-7xl');
+                    c.classList.add('max-w-xl');
+                });
+                grids.forEach(g => {
+                    g.classList.remove('md:grid-cols-2', 'lg:grid-cols-3');
+                    g.classList.add('grid-cols-1');
+                });
+                if (icon) icon.className = 'fa-solid fa-mobile-screen text-indigo-500 text-xs';
+                if (text) text.innerText = '手機版';
+                if (showNotice) showToast('已切換為：手機精簡模式 📱');
+            } else if (mode === 'desktop') {
+                containers.forEach(c => {
+                    c.classList.remove('max-w-xl');
+                    c.classList.add('max-w-5xl', 'lg:max-w-7xl');
+                });
+                grids.forEach(g => {
+                    g.classList.remove('grid-cols-1');
+                    g.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+                });
+                if (icon) icon.className = 'fa-solid fa-desktop text-indigo-500 text-xs';
+                if (text) text.innerText = '寬螢幕';
+                if (showNotice) showToast('已切換為：電腦寬版模式 🖥️');
+            } else {
+                containers.forEach(c => {
+                    c.classList.add('max-w-xl', 'md:max-w-5xl', 'lg:max-w-7xl');
+                });
+                grids.forEach(g => {
+                    g.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+                });
+                if (icon) icon.className = 'fa-solid fa-sliders text-indigo-600 text-xs';
+                if (text) text.innerText = '自適應';
+                if (showNotice) showToast('已切換為：自動適應模式 ⚡');
+            }
+        }
+
+        function initData() {
+            initTheme();
+            initLayoutMode();
+            const stored = localStorage.getItem('us_places_v1');
+            if (stored) {
+                try {
+                    const loaded = JSON.parse(stored);
+                    const existingNames = new Set(loaded.map(p => p.name));
+                    const missingDefaults = DEFAULT_PLACES.filter(p => !existingNames.has(p.name));
+                    placesState = [...loaded, ...missingDefaults];
+                } catch (e) {
+                    placesState = [...DEFAULT_PLACES];
+                }
+            } else {
+                placesState = [...DEFAULT_PLACES];
+            }
+
+            saveToLocalStorage();
+            renderHotTags();
+            applyFilters();
+
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('back-to-top-btn');
+                if (btn) {
+                    if (window.scrollY > 300) {
+                        btn.classList.remove('opacity-0', 'pointer-events-none');
+                        btn.classList.add('opacity-100', 'pointer-events-auto');
+                    } else {
+                        btn.classList.add('opacity-0', 'pointer-events-none');
+                        btn.classList.remove('opacity-100', 'pointer-events-auto');
+                    }
+                }
+            });
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('us_places_v1', JSON.stringify(placesState));
+            const pill = document.getElementById('header-count-pill');
+            if (pill) pill.innerText = `${placesState.length} 處`;
+        }
+
+        function renderHotTags() {
+            const container = document.getElementById('hot-tags-container');
+            if (!container) return;
+
+            const tagCounts = {};
+            placesState.forEach(item => {
+                if (Array.isArray(item.tags)) {
+                    item.tags.forEach(t => {
+                        let tag = t.trim();
+                        if (!tag.startsWith('#')) tag = '#' + tag;
+                        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                    });
+                }
+            });
+
+            const sortedTags = Object.keys(tagCounts)
+                .filter(tag => tagCounts[tag] >= 2)
+                .sort((a, b) => tagCounts[b] - tagCounts[a])
+                .slice(0, 10);
+
+            container.innerHTML = sortedTags.map(tag => {
+                const isActive = (currentTag === tag);
+                return `<button onclick="setTagFilter('${tag}')" class="shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition active:scale-95 ${
+                    isActive 
+                    ? 'bg-indigo-600 text-white shadow-sm font-bold' 
+                    : 'bg-white dark:bg-[#1e2532] text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-white/10'
+                }">
+                    ${tag} <span class="text-[10px] opacity-70">(${tagCounts[tag]})</span>
+                </button>`;
+            }).join('');
+        }
+
+        function setRegionFilter(region) {
+            currentRegion = region;
+            document.querySelectorAll('#region-filter-container button').forEach(btn => {
+                const btnRegion = btn.getAttribute('data-region');
+                if (btnRegion === region) {
+                    btn.className = 'region-btn active shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-indigo-600 text-white shadow-sm';
+                } else {
+                    btn.className = 'region-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white dark:bg-[#1e2532] text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/10';
+                }
+            });
+            applyFilters();
+        }
+
+        function setTypeFilter(type) {
+            currentType = type;
+            document.querySelectorAll('#category-tabs button').forEach(btn => {
+                const btnType = btn.getAttribute('data-type');
+                if (btnType === type) {
+                    btn.className = 'type-btn active flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 bg-white dark:bg-[#283241] text-indigo-700 dark:text-indigo-400 shadow-sm font-bold whitespace-nowrap';
+                } else {
+                    btn.className = 'type-btn flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 whitespace-nowrap';
+                }
+            });
+            applyFilters();
+        }
+
+        function setTagFilter(tag) {
+            currentTag = (currentTag === tag) ? 'ALL' : tag;
+            renderHotTags();
+            applyFilters();
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('search-input');
+            if (input) {
+                input.value = '';
+                document.getElementById('clear-search-btn')?.classList.add('hidden');
+                applyFilters();
+            }
+        }
+
+        function resetAllFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('clear-search-btn')?.classList.add('hidden');
+            currentRegion = 'ALL';
+            currentType = 'ALL';
+            currentTag = 'ALL';
+            setRegionFilter('全部區域');
+            setTypeFilter('ALL');
+            renderHotTags();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchInput = document.getElementById('search-input');
+            const searchVal = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (clearBtn) {
+                if (searchVal) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+
+            const isFiltered = (currentRegion !== 'ALL' && currentRegion !== '全部區域' || currentType !== 'ALL' || currentTag !== 'ALL' || searchVal);
+            const resetBtn = document.getElementById('reset-filter-btn');
+            if (resetBtn) {
+                if (isFiltered) resetBtn.classList.remove('hidden');
+                else resetBtn.classList.add('hidden');
+            }
+
+            const filtered = placesState.filter(item => {
+                if (currentRegion !== 'ALL' && currentRegion !== '全部區域' && item.region !== currentRegion) return false;
+                if (currentType !== 'ALL' && item.type !== currentType) return false;
+                if (currentTag !== 'ALL') {
+                    const hasTag = Array.isArray(item.tags) && item.tags.some(t => t.toLowerCase() === currentTag.toLowerCase());
+                    if (!hasTag) return false;
+                }
+                if (searchVal) {
+                    const nameMatch = item.name && item.name.toLowerCase().includes(searchVal);
+                    const addrMatch = item.address && item.address.toLowerCase().includes(searchVal);
+                    const noteMatch = item.note && item.note.toLowerCase().includes(searchVal);
+                    const tagMatch = Array.isArray(item.tags) && item.tags.some(t => t.toLowerCase().includes(searchVal));
+                    if (!nameMatch && !addrMatch && !noteMatch && !tagMatch) return false;
+                }
+                return true;
+            });
+
+            renderPlacesGrid(filtered);
+        }
+
+        function renderPlacesGrid(list) {
+            const grid = document.getElementById('places-grid');
+            const noResults = document.getElementById('no-results-msg');
+            const countBadge = document.getElementById('filtered-count-badge');
+
+            if (countBadge) countBadge.innerText = `共 ${list.length} 處推薦地點`;
+
+            if (list.length === 0) {
+                grid.innerHTML = '';
+                noResults?.classList.remove('hidden');
+                return;
+            }
+
+            noResults?.classList.add('hidden');
+
+            grid.innerHTML = list.map(item => {
+                const tagsHtml = (item.tags || []).map(t => {
+                    return `<span onclick="setTagFilter('${t}')" class="cursor-pointer px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-slate-100 dark:bg-[#141820] text-slate-500 dark:text-slate-400 hover:text-indigo-600 transition">
+                        ${t}
+                    </span>`;
+                }).join(' ');
+
+                const mapUrl = item.mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + (item.address||''))}`;
+
+                return `
+                <div class="ui-surface rounded-2xl p-4 transition-all">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="px-2.5 py-0.5 rounded-full text-[10.5px] font-semibold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/40">
+                                ${item.region}
+                            </span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10.5px] font-semibold bg-orange-50 dark:bg-orange-950/40 text-orange-800 dark:text-orange-300 border border-orange-200/60 dark:border-orange-800/40">
+                                ${item.type}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-400 text-xs font-bold shrink-0">
+                            <i class="fa-solid fa-star text-[10px] text-amber-500"></i> ${item.rating || '4.5'}
+                        </div>
+                    </div>
+
+                    <h4 class="text-[15.5px] font-bold text-slate-900 dark:text-white leading-snug tracking-tight mb-1">
+                        ${item.name}
+                    </h4>
+
+                    <p class="text-[11.5px] text-slate-500 dark:text-slate-400 mb-2.5 flex items-center gap-1.5">
+                        <i class="fa-regular fa-compass text-slate-400 text-[11px]"></i>
+                        <span class="truncate">${item.address || '在地精選地點'}</span>
+                    </p>
+
+                    ${item.note ? `
+                    <div class="note-block p-2.5 rounded-r-xl text-xs leading-relaxed mb-3">
+                        ${item.note}
+                    </div>
+                    ` : ''}
+
+                    <div class="flex flex-wrap gap-1 mb-3">
+                        ${tagsHtml}
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-white/5">
+                        <a href="${mapUrl}" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-sm active:scale-95 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-arrow text-[10px]"></i> 開啟地圖導航
+                        </a>
+
+                        <div class="flex items-center gap-1">
+                            <button onclick="editPlace('${item.id}')" class="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 active:scale-90" title="編輯">
+                                <i class="fa-solid fa-pen text-xs"></i>
+                            </button>
+                            <button onclick="deletePlace('${item.id}')" class="p-2 rounded-lg text-slate-400 hover:text-rose-600 active:scale-90" title="刪除">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function openAddModal() {
+            document.getElementById('modal-title').innerText = '新增私房地點';
+            document.getElementById('form-id').value = '';
+            document.getElementById('form-name').value = '';
+            document.getElementById('form-region').value = '芝加哥 (Chicago)';
+            document.getElementById('form-type').value = '🍽️ 精選美食';
+            document.getElementById('form-rating').value = '4.5';
+            document.getElementById('form-tags').value = '';
+            document.getElementById('form-address').value = '';
+            document.getElementById('form-mapurl').value = '';
+            document.getElementById('form-note').value = '';
+            document.getElementById('place-modal').classList.remove('hidden');
+        }
+
+        function editPlace(id) {
+            const item = placesState.find(p => p.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-title').innerText = '編輯私房地點';
+            document.getElementById('form-id').value = item.id;
+            document.getElementById('form-name').value = item.name || '';
+            document.getElementById('form-region').value = item.region || '';
+            document.getElementById('form-type').value = item.type || '';
+            document.getElementById('form-rating').value = item.rating || 4.5;
+            document.getElementById('form-tags').value = Array.isArray(item.tags) ? item.tags.join(', ') : '';
+            document.getElementById('form-address').value = item.address || '';
+            document.getElementById('form-mapurl').value = item.mapUrl || '';
+            document.getElementById('form-note').value = item.note || '';
+
+            document.getElementById('place-modal').classList.remove('hidden');
+        }
+
+        function handleSavePlace(e) {
+            e.preventDefault();
+            const id = document.getElementById('form-id').value;
+            const name = document.getElementById('form-name').value.trim();
+            const region = document.getElementById('form-region').value;
+            const type = document.getElementById('form-type').value;
+            const rating = parseFloat(document.getElementById('form-rating').value) || 4.5;
+            const tagsRaw = document.getElementById('form-tags').value;
+            const address = document.getElementById('form-address').value.trim();
+            const mapUrl = document.getElementById('form-mapurl').value.trim();
+            const note = document.getElementById('form-note').value.trim();
+
+            const tags = tagsRaw.split(/[,，]/)
+                .map(t => t.trim())
+                .filter(t => t.length > 0)
+                .map(t => t.startsWith('#') ? t : '#' + t);
+
+            if (id) {
+                const idx = placesState.findIndex(p => p.id === id);
+                if (idx !== -1) {
+                    placesState[idx] = { ...placesState[idx], name, region, type, rating, tags, address, mapUrl, note };
+                    showToast('地點已更新！');
+                }
+            } else {
+                const newId = 'custom-' + Date.now();
+                placesState.unshift({
+                    id: newId,
+                    name,
+                    region,
+                    type,
+                    rating,
+                    tags,
+                    address,
+                    mapUrl: mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + address)}`,
+                    note
+                });
+                showToast('已新增私房地點！');
+            }
+
+            saveToLocalStorage();
+            closeModal('place-modal');
+            renderHotTags();
+            applyFilters();
+        }
+
+        function deletePlace(id) {
+            const item = placesState.find(p => p.id === id);
+            if (!item) return;
+            if (confirm(`確定要刪除「${item.name}」嗎？`)) {
+                placesState = placesState.filter(p => p.id !== id);
+                saveToLocalStorage();
+                renderHotTags();
+                applyFilters();
+                showToast('已刪除地點');
+            }
+        }
+
+        function openMenuModal() {
+            document.getElementById('menu-modal').classList.remove('hidden');
+        }
+
+        function confirmResetModal() {
+            closeModal('menu-modal');
+            document.getElementById('confirm-modal').classList.remove('hidden');
+        }
+
+        function executeResetData() {
+            placesState = [...DEFAULT_PLACES];
+            saveToLocalStorage();
+            closeModal('confirm-modal');
+            renderHotTags();
+            applyFilters();
+            showToast('已重置回預設地點');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId)?.classList.add('hidden');
+        }
+
+        function exportJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(placesState, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `us_places_${new Date().toISOString().slice(0,10)}.json`);
+            dlAnchor.click();
+            closeModal('menu-modal');
+            showToast('已下載備份 JSON 檔案');
+        }
+
+        function importJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const imported = JSON.parse(event.target.result);
+                    if (Array.isArray(imported)) {
+                        placesState = imported;
+                        saveToLocalStorage();
+                        renderHotTags();
+                        applyFilters();
+                        closeModal('menu-modal');
+                        showToast(`成功匯入 ${imported.length} 處地點！`);
+                    }
+                } catch (err) {
+                    alert('JSON 格式錯誤，無法讀取！');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2200);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        
+        function openGuideSwitcherModal() {
+            document.getElementById('guide-switcher-modal')?.classList.remove('hidden');
+        }
+
+        function navigateToGuide(guideKey) {
+            const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            if (isLocal) {
+                window.location.href = `../${guideKey}/index.html`;
+            } else {
+                const org = 'Alvin1022';
+                window.location.href = `https://${org}.github.io/${guideKey}/`;
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', initData);
+    </script>
+</body>
+</html>
