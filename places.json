@@ -468,12 +468,13 @@
     "type": "🥩 美式牛排/漢堡",
     "rating": 4.7,
     "tags": [
-      "#芝加哥",
-      "#全美最佳漢堡",
+      "#FultonMarket",
       "#WestLoop",
-      "#厚切培根半熟蛋"
+      "#神級起司漢堡",
+      "#美式餐酒館",
+      "#現場候位"
     ],
-    "note": "位於West Loop的美式復古小餐館，長年被譽為全美最好吃漢堡，招牌雙層起司漢堡加厚切培根與太陽蛋必吃。",
+    "note": "全美最具代表性的美式餐酒館之一，以「神級起司漢堡」聞名，採開放式廚房吧台設計。招牌雙層起司漢堡（Single Cheeseburger 實際為兩片肉排）可加點厚切培根與煎蛋，肉汁豐沛濃郁。不接受一般線上訂位，熱門時段需現場候位 1 小時以上。",
     "address": "800 W Randolph St, Chicago, IL 60607",
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Au+Cheval+800+W+Randolph+St+Chicago"
   },
@@ -596,12 +597,13 @@
     "type": "🍜 異國/亞洲料理",
     "rating": 4.6,
     "tags": [
-      "#矽谷",
-      "#中東地中海料理",
-      "#慢烤羊小排",
-      "#科技人最愛"
+      "#Sunnyvale市區",
+      "#中東料理",
+      "#中東烤肉",
+      "#鷹嘴豆泥",
+      "#建議訂位"
     ],
-    "note": "桑尼維爾市中心極高評價中東地中海餐廳，招牌香料羊小排（Rack of Lamb）肉質軟嫩、雞肉塔吉鍋與鷹嘴豆泥極具水準。",
+    "note": "Sunnyvale 市中心極具人氣的中東料理餐廳，裝潢充滿濃郁異國風情。以份量十足的中東烤肉、羊肉料理與手工鷹嘴豆泥（Hummus）聞名，香料層次豐富且肉質軟嫩，適合多人聚餐，晚餐建議提前訂位。",
     "address": "190 S Murphy Ave, Sunnyvale, CA 94086",
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Dishdash+190+S+Murphy+Ave+Sunnyvale"
   },
@@ -652,5 +654,166 @@
     "note": "舊金山灣區靈魂咖啡品牌，每杯手沖依客製調配，招牌薄荷莫吉托冰咖啡（Mint Mojito Iced Coffee）以新鮮薄荷葉現打，清涼順口。",
     "address": "125 S Frances St, Sunnyvale, CA 94086",
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Philz+Coffee+125+S+Frances+St+Sunnyvale"
+  },
+  {
+    "id": "us-043",
+    "name": "Urban Plates",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.6,
+    "tags": [
+      "#Sunnyvale市區",
+      "#健康美式料理",
+      "#現烤牛排鮭魚",
+      "#半自助點餐"
+    ],
+    "note": "Sunnyvale 市區明亮現代的健康美式料理，採半自助式點餐櫃檯免高額桌邊小費。提供現烤牛排、鮭魚排與慢燉肉類主餐，搭配新鮮烤蔬菜與沙拉，出餐快速、營養均衡。",
+    "address": "300 W McKinley Ave Suite 100, Sunnyvale, CA 94086",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Urban+Plates+300+W+McKinley+Ave+Sunnyvale+CA"
+  },
+  {
+    "id": "us-044",
+    "name": "Hunan House",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#Sunnyvale市區",
+      "#中式湘菜",
+      "#剁椒魚頭",
+      "#香辣下飯"
+    ],
+    "note": "Sunnyvale 市區口碑極佳的地道中式湘菜館，招牌剁椒魚頭、小炒肉、乾鍋花菜等經典湖南風味料理香辣下飯，是出差想念熱騰騰中式炒菜的穩妥首選。",
+    "address": "122 S Sunnyvale Ave, Sunnyvale, CA 94086",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hunan+House+122+S+Sunnyvale+Ave+Sunnyvale+CA"
+  },
+  {
+    "id": "us-045",
+    "name": "Zareen's Mountain View",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.4,
+    "tags": [
+      "#Google園區周邊",
+      "#巴基斯坦印度料理",
+      "#雞肉捲餅",
+      "#親民平價"
+    ],
+    "note": "距離 Google Mountain View 園區極近的巴基斯坦與印度料理，矽谷科技圈超人氣名店。必點現烤香料雞肉捲餅（Chicken Tikka Masala Wrap）、印度烤餅（Naan）與香料奶茶，翻桌率高適合快速午餐。",
+    "address": "1477 Plymouth St Ste C, Mountain View, CA 94043",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Zareens+1477+Plymouth+St+Mountain+View+CA"
+  },
+  {
+    "id": "us-046",
+    "name": "Doppio Zero Mountain View",
+    "region": "矽谷 (Silicon Valley)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.3,
+    "tags": [
+      "#CastroSt商圈",
+      "#南義料理",
+      "#拿坡里窯烤披薩",
+      "#下班小酌"
+    ],
+    "note": "位於 Mountain View 熱鬧的 Castro Street 上，時髦現代南義料理餐廳。主打正統拿坡里窯烤披薩、手工義大利麵與各式調酒，戶外座位氣氛極佳，適合與同事下班聚餐小酌。",
+    "address": "160 Castro St, Mountain View, CA 94041",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Doppio+Zero+160+Castro+St+Mountain+View+CA"
+  },
+  {
+    "id": "us-047",
+    "name": "River Roast",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.6,
+    "tags": [
+      "#RiverNorth",
+      "#芝加哥河畔景觀",
+      "#桌邊現切烤肉",
+      "#美式餐酒館"
+    ],
+    "note": "坐落芝加哥河畔、離飯店步行可達，擁有絕佳水岸景觀與復古工業風寬敞空間。以「桌邊現切烤肉」聞名，招牌全隻烤雞、慢烤牛排與脆皮烤豬肉搭配馬鈴薯泥極具代表性。",
+    "address": "315 N LaSalle St, Chicago, IL 60654",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=River+Roast+315+N+LaSalle+St+Chicago+IL"
+  },
+  {
+    "id": "us-048",
+    "name": "Pizzeria Portofino",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.9,
+    "tags": [
+      "#RiverNorth",
+      "#芝加哥河畔景觀",
+      "#義式薄皮披薩",
+      "#商務約會"
+    ],
+    "note": "位於芝加哥河畔旁的義式海岸風情餐廳，明亮優雅落地窗設計冬季也能賞河景。供應手工窯烤薄皮披薩、海鮮義大利麵與炭烤海鮮，口味清爽擺盤精緻，適合約會與商務聚餐。",
+    "address": "317 N Clark St, Chicago, IL 60654",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pizzeria+Portofino+317+N+Clark+St+Chicago+IL"
+  },
+  {
+    "id": "us-049",
+    "name": "Girl & The Goat",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.7,
+    "tags": [
+      "#FultonMarket",
+      "#WestLoop",
+      "#名廚創意料理",
+      "#必比登推薦",
+      "#務必提前訂位"
+    ],
+    "note": "由名廚 Stephanie Izard 主理的 West Loop 指標性創意料理餐廳。以適合分食的 Small Plates 聞名，烤豬臉肉、炒四季豆與各式羊肉料理長年熱銷。一位難求，務必提前數週訂位或開門搶吧台位。",
+    "address": "809 W Randolph St, Chicago, IL 60607",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Girl+and+The+Goat+809+W+Randolph+St+Chicago+IL"
+  },
+  {
+    "id": "us-050",
+    "name": "Duck Duck Goat",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍜 異國/亞洲料理",
+    "rating": 4.7,
+    "tags": [
+      "#FultonMarket",
+      "#Google辦公室周邊",
+      "#美式創意中菜",
+      "#北京烤鴨"
+    ],
+    "note": "就在 Google Chicago 辦公室所在的 Fulton Market 街上，名廚 Stephanie Izard 主理的美式創意中菜。裝潢華麗復古，提供手工點心、北京烤鴨、乾煸四季豆與各式麵食，適合團隊聚餐。",
+    "address": "857 W Fulton Market, Chicago, IL 60607",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Duck+Duck+Goat+857+W+Fulton+Market+Chicago+IL"
+  },
+  {
+    "id": "us-051",
+    "name": "The Publican",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.5,
+    "tags": [
+      "#FultonMarket",
+      "#歐式啤酒屋",
+      "#烤肉生蠔",
+      "#精釀啤酒"
+    ],
+    "note": "位於 Fulton Market，以歐式啤酒屋為靈感並設有長型共享木桌。聚焦高品質肉類料理（烤豬肉、香腸）、新鮮生蠔與海鮮，搭配豐富精釀啤酒酒單，午晚餐與週末早午餐皆有營業。",
+    "address": "837 W Fulton Market, Chicago, IL 60607",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Publican+837+W+Fulton+Market+Chicago+IL"
+  },
+  {
+    "id": "us-052",
+    "name": "Aba",
+    "region": "芝加哥 (Chicago)",
+    "type": "🍽️ 精選美食",
+    "rating": 4.8,
+    "tags": [
+      "#FultonMarket",
+      "#現代地中海料理",
+      "#綠植露台",
+      "#商務晚餐小酌"
+    ],
+    "note": "位於 Fulton Market 三樓的時髦現代地中海料理餐廳，擁有大量綠植與暖色調燈光。推薦煙燻鮪魚塔塔、烤羊肉串、現烤餅皮與鷹嘴豆泥，空間寬敞具設計感，非常適合商務晚餐或朋友小酌。",
+    "address": "302 N Green St 3rd Floor, Chicago, IL 60607",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Aba+302+N+Green+St+Chicago+IL"
   }
 ]
